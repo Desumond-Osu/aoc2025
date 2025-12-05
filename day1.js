@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const file = fs.readFileSync(require('path').join(__dirname, 'inputs', `${require('path').basename(__filename, '.js')}.txt`), 'utf8').split('\n').map(i => [i[0], Number(i.slice(1))]);
+const file = fs.readFileSync(require('path').join(__dirname, 'inputs', `${require('path').basename(__filename, '.js')}.txt`), 'utf8').split(/\r?\n/).map(i => [i[0], Number(i.slice(1))]);
 
 let pos = 50;
 let [p1, p2] = [0, 0];
@@ -19,7 +19,7 @@ file.forEach(row => {
   }
 
   pos += move;
-  pos %= ((pos % 100) + 100) % 100;
+  pos = ((pos % 100) + 100) % 100;
 
   if (pos % 100 === 0) {
     p1++;

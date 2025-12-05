@@ -1,5 +1,5 @@
 const fs = require('node:fs');
-const file = fs.readFileSync(require('path').join(__dirname, 'inputs', `${require('path').basename(__filename, '.js')}.txt`), 'utf8').split('\n').map(i => i.split(''));
+const file = fs.readFileSync(require('path').join(__dirname, 'inputs', `${require('path').basename(__filename, '.js')}.txt`), 'utf8').split(/\r?\n/).map(i => i.split(''));
 
 const [length, width] = [file.length, file[0].length];
 
