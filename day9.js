@@ -2,19 +2,19 @@ const fs = require('node:fs');
 const file = fs.readFileSync(require('path').join(__dirname, 'inputs', `${require('path').basename(__filename, '.js')}.txt`), 'utf8').split(/\r?\n/).map(i => i.split(',').map(Number));
 
 //p1
-const lengthList = {};
+const areaList = {};
 
 for (let i = 0; i < file.length; i++) {
   for (let j = i + 1; j < file.length; j++) {
     const [a, b] = [file[i], file[j]];
     const area = (Math.abs(b[0] - a[0]) + 1) * (Math.abs(b[1] - a[1]) + 1);
-    lengthList[area] = [a, b];
+    areaList[area] = [a, b];
   }
 }
 
-const sortedLengthList = Object.fromEntries(Object.entries(lengthList).sort(([a], [b]) => a - b));
+const sortedAreaList = Object.fromEntries(Object.entries(areaList).sort(([a], [b]) => a - b));
 
-console.log(Object.keys(sortedLengthList).pop());
+console.log(Object.keys(sortedAreaList).pop());
 
 //p2
 // Group points by x and y coordinates
